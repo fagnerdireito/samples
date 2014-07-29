@@ -25,7 +25,7 @@ $('#grupo').editable({
 		$.ajax({
 				type:'POST',
 				data:'codigo='+newValue,
-				url:'teste2.asp',
+				url:'source.asp',
 				success: function(response) {
 				 $('#cargo').editable('option', 'source', response);
 				 $('#cargo').editable('setValue', null);
@@ -42,6 +42,7 @@ $('#cargo').editable({
 </script>
 
 
+<!-- == SOURCE.ASP == 
 <%
 codigo = request.form("codigo")
 if codigo = 2 then
@@ -54,3 +55,5 @@ elseif codigo=3 then
 	response.write "}"
 end if
 %>
+
+-->
