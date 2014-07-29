@@ -26,4 +26,24 @@ $('#cargo').editable({
   title: 'Cargo',
 	placement: 'right'
 });
+
+
+
+//====== MODO SIMPLIFICADO ======
+
+$('#grupo').editable({
+	title: 'Grupo',
+	placement: 'right',
+	value: 1,			
+	success: function(response, newValue) {
+		$.post('includes/js_cargos.asp?codigo=' + newValue)
+    		 .done(function (data) {
+			$('#cargo').editable('option', 'source', data);
+	  		$('#cargo').editable('setValue', null);
+			$('#cargo').editable('toggle');
+		})
+	}
+});
+
+
 </script>
