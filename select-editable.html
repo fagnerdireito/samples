@@ -1,0 +1,56 @@
+<table style="font-size:16px; margin-left:200px; margin-top:50px" cellpadding="10" border="1" width="30%">
+  <tr>
+    <td width="30%">Grupo:</td><td><a href="#" data-type="select" id="grupo"></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Cargo:</td>
+    <td><a href="#" data-type="select" id="cargo"></a></td>
+  </tr>
+</table>
+
+<script language="javascript">
+$.fn.editable.defaults.mode = 'inline';
+$('#grupo').editable({
+	title: 'Grupo',
+	placement: 'right',
+	value: 1,
+	source: [
+		{value: 2, text: 'Previdência'},
+		{value: 3, text: 'Assistência'}
+	],
+  success: function(response, newValue) {
+		$.ajax({
+				type:'POST',
+				data:'codigo='+newValue,
+				url:'teste2.asp',
+				success: function(response) {
+				 $('#cargo').editable('option', 'source', response);
+				 $('#cargo').editable('setValue', null);
+				 $('#cargo').editable('toggle');
+			}
+		});
+	}
+});
+
+$('#cargo').editable({
+  title: 'Cargo',
+	placement: 'right'
+});
+</script>
+
+
+<%
+codigo = request.form("codigo")
+if codigo = 2 then
+	response.write "{"
+	response.write " """&codigo&""" : ""Técnico em Benefícios"""
+	response.write "}"
+elseif codigo=3 then
+	response.write "{"
+	response.write " """&codigo&""" : ""Emissão de Guias"""
+	response.write "}"
+end if
+%>
