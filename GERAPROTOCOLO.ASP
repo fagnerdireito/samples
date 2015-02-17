@@ -1,7 +1,7 @@
 
 <%
 '## GERA PROTOCOLO SEGUENCIAL SIMPLES
-sql ="call geraprotocolosimples(userid,codinteressado,codorgao)"
+sql ="call geraprotocolosimples(userid,codinteressado,codorgao,codsetor)"
 set rs = conexao.execute (sql)
 protocolo = rs("protocolo")
 
